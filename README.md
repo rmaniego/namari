@@ -11,7 +11,7 @@ pip install --upgrade namari
 
 To integrate namari into your Python codes, check the code snippet below:
 ```python
-from namair import Namari
+from namari import Namari
 
 # initialize
 lexicon = Namari()
