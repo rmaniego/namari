@@ -55,6 +55,11 @@ class Namari():
                 if key in keys:
                     return self.pairs.get(uid, fallback)
         return fallback
+    
+    def items(self):
+        for uid, value in self.pairs.items():
+            keys = self.relationships.get(uid, [])
+            yield (keys, value)
 
 def validate_key(key):
     return (isinstance(key, str) or isinstance(key, int) or isinstance(key, float))

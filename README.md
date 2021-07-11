@@ -11,7 +11,7 @@ pip install --upgrade namari
 
 To integrate namari into your Python codes, check the code snippet below:
 ```python
-from namari import Namari
+from namair import Namari
 
 # initialize
 lexicon = Namari()
@@ -33,6 +33,12 @@ object = lexicon.get("morning") # None
 
 # get the value of the specified key with specified fallback
 object = lexicon.get("night", fallback="moon")
+
+# iterate over all keys-value pairs
+for keys, value in lexicon.items():
+    print(type(keys)) # list
+    print("\n".join(keys))
+    print(value)
 ```
 
 ## Did you know?

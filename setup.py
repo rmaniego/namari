@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 setuptools.setup(
     name = 'namari',
     packages = ["namari"],
-    version = '1.0.0',
+    version = '1.0.1',
     license='MIT',
     description = 'Many-to-one keys-value pair relationship Python object manager.',
     long_description=long_description,
@@ -16,7 +16,7 @@ setuptools.setup(
     url = 'https://github.com/rmaniego/namari',
     download_url = 'https://github.com/rmaniego/namari/archive/v1.0.tar.gz',
     keywords = ['Dictionary', 'JSON', 'many-to-many', 'keys-value', 'multiple relationship'],
-    install_requires=["arkivist", "maguro"],
+    install_requires=[],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers', 

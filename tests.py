@@ -15,3 +15,6 @@ for word in lorem.split(" "):
     lexicon.attach(word, word.capitalize())
     lexicon.detach(word, 0)
     print(lexicon.get(word.lower(), "hello, world"))
+
+for keys, value in lexicon.items():
+    print(keys, value)
