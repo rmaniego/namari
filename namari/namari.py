@@ -78,11 +78,18 @@ class Namari():
     def values(self):
         return list(self.pairs.values())
     
+    def contains(self, keyword):
+        if validate_key(keyword):
+            for keys in self.relationships.values():
+                if keyword in keys:
+                    return True
+        return False
+    
     def count(self):
         return len(self.pairs)
     
     def is_empty(self):
-        return (len(self.pairs) == 1)
+        return (len(self.pairs) == 0)
 
     def clear(self):
         self.dataset.clear()

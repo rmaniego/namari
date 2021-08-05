@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: namari
-Version: 1.0.1
+Version: 1.0.2
 Summary: Many-to-one keys-value pair relationship Python object manager.
 Home-page: https://github.com/rmaniego/namari
 Author: Rodney Maniego Jr.
@@ -36,6 +36,12 @@ from namair import Namari
 # initialize
 lexicon = Namari()
 
+# initialize with filename
+lexicon = Namari("filename.json")
+
+# clear contents
+lexicon.clear()
+
 # set key-value pair
 lexicon.set("yellow", "sun")
 
@@ -53,6 +59,13 @@ object = lexicon.get("morning") # None
 
 # get the value of the specified key with specified fallback
 object = lexicon.get("night", fallback="moon")
+
+# count contents
+count = lexicon.count()
+
+# check if empty
+if lexicon.is_empty():
+    print("Empty")
 
 # iterate over all keys-value pairs
 for keys, value in lexicon.items():

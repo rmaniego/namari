@@ -24,6 +24,10 @@ if lexicon.is_empty():
         item = lexicon.get(word.lower(), "hello, world")
         print(f"#{count} {item}")
 
+print("[check]")
+print("Contains \"lorem\":", lexicon.contains("lorem"))
+print("Contains \"hello\":", lexicon.contains("hello"))
+
 
 print("\n\n[keys]")
 print(lexicon.keys())

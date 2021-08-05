@@ -25,6 +25,10 @@ lexicon.clear()
 # set key-value pair
 lexicon.set("yellow", "sun")
 
+# check if key existing
+if lexicon.contains("yellow"):
+    print("Exists")
+
 # associate existing keys with a new and unique key
 lexicon.attach("yellow", "hot")
 lexicon.attach("yellow", "morning")
