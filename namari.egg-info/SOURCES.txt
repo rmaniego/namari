@@ -1,0 +1,17 @@
+LICENSE
+README.md
+commit.sh
+pypi.sh
+setup.cfg
+setup.py
+tests.py
+namari/__init__.py
+namari/namari.py
+namari/version.py
+namari.egg-info/PKG-INFO
+namari.egg-info/SOURCES.txt
+namari.egg-info/dependency_links.txt
+namari.egg-info/top_level.txt
+namari/__pycache__/__init__.cpython-39.pyc
+namari/__pycache__/namari.cpython-39.pyc
+namari/__pycache__/version.cpython-39.pyc

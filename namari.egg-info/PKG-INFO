@@ -1,3 +1,23 @@
+Metadata-Version: 2.1
+Name: namari
+Version: 1.0.1
+Summary: Many-to-one keys-value pair relationship Python object manager.
+Home-page: https://github.com/rmaniego/namari
+Author: Rodney Maniego Jr.
+Author-email: rod.maniego23@gmail.com
+License: MIT
+Download-URL: https://github.com/rmaniego/namari/archive/v1.0.tar.gz
+Keywords: Dictionary,JSON,many-to-many,keys-value,multiple relationship
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # namari
 Many-to-one keys-value pair relationship Python object manager.
 
@@ -15,12 +35,6 @@ from namair import Namari
 
 # initialize
 lexicon = Namari()
-
-# initialize with filename
-lexicon = Namari("filename.json")
-
-# clear contents
-lexicon.clear()
 
 # set key-value pair
 lexicon.set("yellow", "sun")
@@ -40,13 +54,6 @@ object = lexicon.get("morning") # None
 # get the value of the specified key with specified fallback
 object = lexicon.get("night", fallback="moon")
 
-# count contents
-count = lexicon.count()
-
-# check if empty
-if lexicon.is_empty():
-    print("Empty")
-
 # iterate over all keys-value pairs
 for keys, value in lexicon.items():
     print(type(keys)) # list
@@ -56,3 +63,5 @@ for keys, value in lexicon.items():
 
 ## Did you know?
 The repository name `namari` was inspired from the developer's noisy cat named Anna Marie, it also means as lead or guidance in Japanese.
+
+
