@@ -21,25 +21,30 @@ if lexicon.is_empty():
         lexicon.attach(word, word.capitalize())
         lexicon.detach(word, 0)
         count = lexicon.count()
-        item = lexicon.get(word.lower(), "hello, world")
+        item = lexicon.findFirst(word.lower(), "hello, world")
         print(f"#{count} {item}")
 
-print("[check]")
+print("\n[Get Children]")
+print("Hello:", lexicon.get("Hello"))
+print("Lorem:", lexicon.get("Lorem"))
+
+
+print("\n[Get Parents]")
+lexicon.attach("Lorem", "ipsum")
+print("Parents: ", lexicon.findAll("ipsum"))
+
+print("\n[check]")
 print("Contains \"lorem\":", lexicon.contains("lorem"))
 print("Contains \"hello\":", lexicon.contains("hello"))
 
 
-print("\n\n[keys]")
-print(lexicon.keys())
 keys = [str(x) for x in lexicon.keys()]
-print(",".join(keys))
+print("\nKeys:", ", ".join(keys))
+
+print("\nValues: ", lexicon.values())
 
 
-print("\n\n[values]")
-print(",".join(lexicon.values()))
-
-
-print("\n[dataset]")
+print("\n\n[dataset]")
 for keys, value in lexicon.items():
     print(f" - {keys}: {value}")
 

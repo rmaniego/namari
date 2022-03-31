@@ -11,7 +11,7 @@ pip install --upgrade namari
 
 To integrate namari into your Python codes, check the code snippet below:
 ```python
-from namair import Namari
+from namari import Namari
 
 # initialize
 lexicon = Namari()
@@ -32,8 +32,10 @@ if lexicon.contains("yellow"):
 # associate existing keys with a new and unique key
 lexicon.attach("yellow", "hot")
 lexicon.attach("yellow", "morning")
+lexicon.attach("yellow", "tea")
 lexicon.attach("morning", "summer")
 lexicon.attach("morning", "cold")
+lexicon.attach("morning", "tea")
 
 # disassociate 2nd key from the 1st key
 lexicon.detach("summer", "cold")
@@ -43,6 +45,10 @@ object = lexicon.get("morning") # None
 
 # get the value of the specified key with specified fallback
 object = lexicon.get("night", fallback="moon")
+
+# get the first parent of child
+parent = lexicon.findFirst("summer", fallback=None)
+parents = lexicon.findAll("tea")
 
 # count contents
 count = lexicon.count()

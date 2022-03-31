@@ -3,104 +3,91 @@
     Namari
 """
 
-from secrets import token_hex
+import hashlib
 from arkivist import Arkivist
 
 
 class Namari():
-    def __init__(self, filepath=""):
-        self.filepath = ""
-        if isinstance(filepath, str):
-            self.filepath = filepath
-        self.dataset = Arkivist(self.filepath)
-        self.relationships = self.dataset.get("relationships", {})
-        self.pairs = self.dataset.get("pairs", {})
+    def __init__(self, filepath=None, autosave=False):
+        self.filepath = _validate_filepath(filepath)
+        self.data = Arkivist(self.filepath, autosave=autosave)
     
-    def attach(self, old_key, new_key):
-        if validate_key(old_key) and validate_key(new_key):
-            found = False
-            for uid, keys in self.relationships.items():
-                if old_key in keys:
-                    found = True
-                    if new_key not in keys:
-                        keys.append(new_key)
-                        self.relationships.update({uid: keys})
-            if not found:
-                uid = gen_uid(list(self.relationships.keys()))
-                keys = list(set([old_key, new_key]))
-                self.relationships.update({uid: keys})
-            self.dataset.set("relationships", self.relationships)
+    def attach(self, parent, child):
+        if _validate_key(parent) and _validate_key(child):
+            if parent in self.data:
+                self.data.appendIn(parent, child)
         return self
     
-    def detach(self, old_key, new_key):
-        if validate_key(old_key) and validate_key(new_key):
-            for uid, keys in self.relationships.items():
-                if (old_key in keys) and (new_key in keys):
-                    keys.remove(new_key)
-                    if len(keys) > 0:
-                        self.relationships.update({uid: keys})
-                    else:
-                        self.relationships.remove(uid)
-                        self.pairs.pop(uid)
-                    self.dataset.set("relationships", self.relationships)
-                    self.dataset.set("pairs", self.pairs)
+    def detach(self, parent, child):
+        if _validate_key(parent) and _validate_key(child):
+            if parent in self.data:
+                self.data.removeIn(parent, child)
         return self
     
-    def set(self, key, value):
-        if validate_key(key):
-            for uid, keys in self.relationships.items():
-                if key in keys:
-                    self.pairs.update({uid: value})
-                    return self
-            uid = gen_uid(list(self.relationships.keys()))
-            self.relationships.update({uid: [key]})
-            self.pairs.update({uid: value})
-            self.dataset.set("relationships", self.relationships)
-            self.dataset.set("pairs", self.pairs)
+    def set(self, parent, child):
+        if _validate_key(parent) and _validate_key(child):
+            self.data.appendIn(parent, child)
         return self
     
-    def get(self, key, fallback=None):
-        if validate_key(key):
-            for uid, keys in self.relationships.items():
-                if key in keys:
-                    return self.pairs.get(uid, fallback)
+    def get(self, parent, fallback=None):
+        if _validate_key(parent):
+            return self.data.get(parent, fallback)
         return fallback
     
+    def findFirst(self, search, fallback=None):
+        if _validate_key(search):
+            for parent, children in self.data.items():
+                if search in children:
+                    return parent
+        return fallback
+    
+    def findAll(self, search):
+        matches = []
+        if _validate_key(search):
+            for parent, children in self.data.items():
+                if search in children:
+                    matches.append(parent)
+        return matches
+    
     def items(self):
-        for uid, value in self.pairs.items():
-            keys = self.relationships.get(uid, [])
-            yield (keys, value)
+        for parent, children in self.data.items():
+            yield (parent, children)
     
     def keys(self):
-        return list(self.relationships.values())
+        return list(self.data.keys())
     
     def values(self):
-        return list(self.pairs.values())
+        return list(self.data.values())
     
-    def contains(self, keyword):
-        if validate_key(keyword):
-            for keys in self.relationships.values():
-                if keyword in keys:
+    def contains(self, search):
+        if _validate_key(search):
+            if (search in self.data):
+                return True
+            for children in self.data.values():
+                if search in children:
                     return True
         return False
     
     def count(self):
-        return len(self.pairs)
+        return len(self.data)
     
     def is_empty(self):
-        return (len(self.pairs) == 0)
+        return self.data.is_empty()
 
     def clear(self):
-        self.dataset.clear()
-        self.relationships = {}
-        self.pairs = {}
+        self.data.reset()
         
 
-def validate_key(key):
-    return (isinstance(key, str) or isinstance(key, int) or isinstance(key, float))
+def _validate_key(key):
+    return type(key) in (str, int, float)
 
-def gen_uid(uids):
-    uid = token_hex(16)
-    if uid not in uids:
-        return uid
-    return gen_uid(uids)
+def _validate_filepath(filepath):
+    if isinstance(filepath, str):
+        if filepath.split(".")[-1] != "json":
+            filepath += ".json"
+        try:
+            with open(filepath, "a+") as temp:
+                return filepath
+        except:
+            pass
+    return None
