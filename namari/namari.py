@@ -22,7 +22,6 @@ class Namari():
             for uid, keys in self.relationships.items():
                 if old_key in keys:
                     found = True
-                    print(keys, old_key)
                     if new_key not in keys:
                         keys.append(new_key)
                         self.relationships.update({uid: keys})

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: namari
-Version: 1.0.2
+Version: 1.0.3
 Summary: Many-to-one keys-value pair relationship Python object manager.
 Home-page: https://github.com/rmaniego/namari
 Author: Rodney Maniego Jr.
@@ -44,6 +44,10 @@ lexicon.clear()
 
 # set key-value pair
 lexicon.set("yellow", "sun")
+
+# check if key existing
+if lexicon.contains("yellow"):
+    print("Exists")
 
 # associate existing keys with a new and unique key
 lexicon.attach("yellow", "hot")
