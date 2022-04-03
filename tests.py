@@ -49,3 +49,15 @@ for keys, value in lexicon.items():
     print(f" - {keys}: {value}")
 
 print("\n# of items:", lexicon.count())
+
+
+codes = Namari()
+for x in range(100):
+    if not codes.contains(f"#{x}"):
+        codes.insert(f"#{x}")
+    if x > 0:
+        codes.set(f"#{x}", f"#{x-1}")
+    codes.attach(f"#{x}", f"#{x}")
+
+for key, value in codes.items():
+    print(key, value)

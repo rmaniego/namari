@@ -12,9 +12,12 @@ class Namari():
         self.filepath = _validate_filepath(filepath)
         self.data = Arkivist(self.filepath, autosave=autosave)
     
-    def insert(self, element):
-        if _validate_key(element):
-            self.data.set(element, {})
+    def insert(self, elements):
+        if type(elements) not in (list, set, tuple):
+            elements = [elements]
+        for element in elements:
+            if _validate_key(element):
+                self.data.set(element, {})
         return self
     
     def set(self, parent, child):

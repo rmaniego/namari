@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: namari
-Version: 1.1.5
+Version: 1.1.6
 Summary: Many-to-one keys-value pair relationship Python object manager.
 Home-page: https://github.com/rmaniego/namari
 Author: Rodney Maniego Jr.
