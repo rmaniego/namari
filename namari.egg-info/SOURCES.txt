@@ -6,6 +6,7 @@ setup.cfg
 setup.py
 tests.py
 namari/__init__.py
+namari/namari - Copy.py
 namari/namari.py
 namari/version.py
 namari.egg-info/PKG-INFO
