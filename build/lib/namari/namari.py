@@ -12,6 +12,16 @@ class Namari():
         self.filepath = _validate_filepath(filepath)
         self.data = Arkivist(self.filepath, autosave=autosave)
     
+    def insert(self, element):
+        if _validate_key(element):
+            self.data.set(element, {})
+        return self
+    
+    def set(self, parent, child):
+        if _validate_key(parent) and _validate_key(child):
+            self.data.appendIn(parent, child)
+        return self
+    
     def attach(self, parent, child):
         if _validate_key(parent) and _validate_key(child):
             if parent in self.data:
@@ -22,11 +32,6 @@ class Namari():
         if _validate_key(parent) and _validate_key(child):
             if parent in self.data:
                 self.data.removeIn(parent, child)
-        return self
-    
-    def set(self, parent, child):
-        if _validate_key(parent) and _validate_key(child):
-            self.data.appendIn(parent, child)
         return self
     
     def get(self, parent, fallback=None):
