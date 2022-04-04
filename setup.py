@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 setuptools.setup(
     name = "namari",
     packages = ["namari"],
-    version = "1.1.7",
+    version = "1.1.8",
     license="MIT",
     description = "Many-to-one keys-value pair relationship Python object manager.",
     long_description=long_description,

@@ -57,6 +57,7 @@ for x in range(100):
         codes.insert(f"#{x}")
     if x > 0:
         codes.set(f"#{x}", f"#{x-1}")
+    codes.attach(f"#{x}", f"#{x}", unique=True)
     codes.attach(f"#{x}", f"#{x}")
 
 for key, value in codes.items():

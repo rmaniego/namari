@@ -29,13 +29,16 @@ lexicon.set("yellow", "sun")
 if lexicon.contains("yellow"):
     print("Exists")
 
-# associate existing keys with a new and unique key
+# associate an existing key with another value
 lexicon.attach("yellow", "hot")
 lexicon.attach("yellow", "morning")
 lexicon.attach("yellow", "tea")
 lexicon.attach("morning", "summer")
 lexicon.attach("morning", "cold")
 lexicon.attach("morning", "tea")
+
+# associate an existing key with a unique value
+lexicon.attach("morning", "tea", unique=True)
 
 # disassociate 2nd key from the 1st key
 lexicon.detach("summer", "cold")

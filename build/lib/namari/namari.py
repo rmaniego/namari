@@ -17,7 +17,7 @@ class Namari():
             elements = [elements]
         for element in elements:
             if _validate_key(element):
-                self.data.set(element, {})
+                self.data.set(element, [])
         return self
     
     def set(self, parent, child):

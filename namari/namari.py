@@ -25,10 +25,11 @@ class Namari():
             self.data.appendIn(parent, child)
         return self
     
-    def attach(self, parent, child):
+    def attach(self, parent, child, unique=False):
         if _validate_key(parent) and _validate_key(child):
             if parent in self.data:
-                self.data.appendIn(parent, child)
+                if (child not in self.data[parent]) or not unique:
+                    self.data.appendIn(parent, child)
         return self
     
     def detach(self, parent, child):
