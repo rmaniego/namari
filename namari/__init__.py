@@ -1,4 +1,4 @@
 """ namari """
-from .version import version as __version__
+__version__ = "1.1.9"
 from .namari import Namari
 __all__ = ["namari"]

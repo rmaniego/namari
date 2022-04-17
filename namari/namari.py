@@ -22,20 +22,20 @@ class Namari():
     
     def set(self, parent, child):
         if _validate_key(parent) and _validate_key(child):
-            self.data.appendIn(parent, child)
+            self.data.append_in(parent, child)
         return self
     
     def attach(self, parent, child, unique=False):
         if _validate_key(parent) and _validate_key(child):
             if parent in self.data:
                 if (child not in self.data[parent]) or not unique:
-                    self.data.appendIn(parent, child)
+                    self.data.append_in(parent, child)
         return self
     
     def detach(self, parent, child):
         if _validate_key(parent) and _validate_key(child):
             if parent in self.data:
-                self.data.removeIn(parent, child)
+                self.data.remove_in(parent, child)
         return self
     
     def get(self, parent, fallback=None):
